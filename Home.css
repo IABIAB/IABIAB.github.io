@@ -1,0 +1,81 @@
+    body{
+      background-color:#FAFAFA;
+    }
+    a{
+      text-decoration: none;
+    }
+    .topbanner{
+      display: flex;
+      font-family: 'Black Han Sans', sans-serif;
+      justify-content: center;
+    }
+    .teambeer {color: #FFCD00;}
+    .foodbook {color: #3CA0FF;}
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 500px;
+    }
+    .foodbook_intro{
+      font-family: 'IBM Plex Sans KR', sans-serif;
+      width: 500px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login_box {
+      width: 500px;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color:white;
+      border: 1px solid #3CA0FF;
+      border-radius: 3px;
+    }
+    .account {
+      display: block;
+      width: 48%;
+      margin: 5px;
+      border-radius: 3px;
+    }
+    #M_id, #M_pw{
+      width: 65%;
+      height: 30px;
+       border-color: #DBDBDB;
+    }
+    #Login_button{
+       margin-top: 25px;
+       width: 65%;
+       height: 30px;
+       background-color: #64A0FF;
+       border-color: transparent;
+       color: white;
+    }
+    #Regist_button{
+      width: 65%;
+      height: 30px;
+      background-color:#8EFB8E;
+      border-color: transparent;
+      color: white;
+    }
+    #Login_button:hover{
+      border-color: #787878;
+    }
+    #Regist_button:hover{
+      background-color: #70F170;
+      border-color: #787878;
+    }
+    #Admin_button{
+      margin-top: 30px;
+      background-color: #FFCD00;
+      border-color: transparent;
+      color:white;
+      border-radius: 3px;
+    }
+    #Admin_button:hover{
+        background-color: #FFAF00;
+        border-color: #787878;
+    }

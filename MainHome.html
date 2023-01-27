@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<link rel="stylesheet" type="text/css" href="./MainHome.css">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <head>
+    <meta charset="utf-8">
+    <title>팀비어-푸드북</title>
+
+  </head>
+<body>
+<div class="LayoutFoodBook">
+    <div class="Header_FoodBook">
+      <div class="TopLogo">
+      <a href="./MainHome.html"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드북로고"></a>
+      </div>
+      <div class="TopMenu">
+        <ul class="TopMenu_list">
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">마이페이지</a></li>
+          <li><a href="./FoodBook_Reservation.html">예약</a></li>
+          <li><a href="#">배달</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  <div class="MainScript">
+      <div class="MainSec">
+          <div class="MainSec_L">
+            <div class="MainSec_L_C1">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <a href="./MainHome.html" target="_self"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드"></a>
+                      </div>
+                      <div class="swiper-slide">
+                          내용은 언제든지 수정가능하다<br>
+                          1월27일(금) ~ 30일(월) ----- 시간표 장바구니 신청(재학생)<br>
+                          2월1일(수) ~ 2월3일(금) ----- 1학기 수강신청 (1차)          ★★★★☆<br>
+                          -> 2시일 가능성이 큼! <br>
+                          2월16일(목) ~ 2월19일(일) ----- 1학기 수강신청 (2차)      ★★☆☆☆<br>
+                          2월20일(월) ~ 2월22일(수) ----- 등록금 내기                    ★★★★★<br>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="" alt=""><br>
+                          이렇게 이미지도 넣을 수 있습니다.
+                      </div>
+
+
+
+                    </div>
+                      <!-- If we need pagination -->
+                      <div class="swiper-pagination">ssss</div>
+
+                      <!-- If we need navigation buttons -->
+                      <div class="swiper-button-prev" id="swiper_button"></div>
+                      <div class="swiper-button-next" id="swiper_button"></div>
+
+
+                  </div>
+            </div>
+          </div>
+              <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+          <div class="MainSec_R">
+            <div class="MainSec_R_C1">
+              <div class="MainSec_RoginSec">
+                <p class="m_p">로그인을 해주세요</p>
+                <a target="_self" href="./Home.html" class="LoginButton">FoodBook 로그인</a>
+                <div class="RegistSec">
+                  <a href="/">아이디.비밀번호찾기</a>
+                  <a href="./Regist_Member_Page1.html">회원가입</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+    </div>
+  </div>
+</div>
+</body>
+
+
+   <!-- js문 -->
+   <script>
+   var mySwiper = new Swiper('.swiper-container', {
+          loop:true,
+          loopAdditionalSlides: 1,
+           // 슬라이드를 버튼으로 움직일 수 있습니다.
+           navigation: {
+             nextEl: '.swiper-button-next',
+             prevEl: '.swiper-button-prev',
+           },
+           // 현재 페이지를 나타내는 점이 생깁니다. 클릭하면 이동합니다.
+           pagination: {
+             el: '.swiper-pagination',
+             type: 'bullets',
+           },
+           // 현재 페이지를 나타내는 스크롤이 생깁니다. 클릭하면 이동합니다.
+           // scrollbar: {
+           //   el: '.swiper-scrollbar',
+           //   draggable: true,
+           // },
+           // 3초마다 자동으로 슬라이드가 넘어갑니다. 1초 = 1000
+           autoplay: {
+             delay: 3000,
+           },
+           });
+           // 슬라이드 무한루프
+           // var swiper = new Swiper('.swiper-container', {
+           //   slidesPerView: 1, // 보여지는 슬라이드 수
+           //   spaceBetween: 50, // 슬라이드 간의 거리(px 단위)
+           //   loop: true, // 슬라이드 무한 반복
+           // });
+   </script>
+</html>

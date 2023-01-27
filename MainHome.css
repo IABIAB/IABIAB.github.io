@@ -1,0 +1,127 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+html:root{
+    --container-width: 1160px;
+}
+body{
+  min-width: 320px;
+  font-family: 'Do Hyeon', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.LayoutFoodBook{
+  flex-direction: column;
+}
+img{
+  overflow-clip-margin: content-box;
+  overflow:clip;
+}
+.Header_FoodBook{
+  display: block;
+  align-items: center;
+  height: 150px;
+}
+.TopLogo{
+  width: 1160px;
+  display: flex;
+  margin: 0px auto;
+  padding: 0px 40px;
+  height: 60px;
+}
+.TopLogo img{height: 60px;}
+.TopMenu{
+  width:1160px;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 0px auto;
+  padding: 0px 40px;
+}
+.TopMenu_list{
+  align-items: center;
+  list-style: none;
+  display: flex;
+}
+.TopMenu_list li{
+  color:#464646;
+  position: relative;
+  display:list-item;
+}
+.TopMenu_list li a {
+  text-decoration: none;
+  display:flex;
+  padding: 15px 15px;
+  color: black;
+}
+.MainScript{
+  display: flex;
+  padding: 30px 50px;
+  margin: 0px auto;
+  width: 1160px;
+}
+.MainSec{
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 712px 344px;
+}
+.MainSec_L{
+  display: block;
+}
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    height: 120px;
+}
+.swiper-slide img{
+  height: 100%;
+  width: 100%;
+}
+#swiper_button{
+  opacity : 0.2;
+}
+#swiper_button:hover{
+  opacity: 1;
+}
+.MainSec_R{
+  display: block;
+}
+
+.MainSec_RoginSec{
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgb(243, 245, 247);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.m_p{
+  margin-bottom: 8px !important;
+}
+.LoginButton{
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(26, 124, 255);
+  border-radius: 5px;
+}
+.RegistSec{
+  justify-content: space-between;
+  margin-top: 10px;
+  display: flex;
+}
+.RegistSec a{
+  color: rgb(126, 128, 130);
+}

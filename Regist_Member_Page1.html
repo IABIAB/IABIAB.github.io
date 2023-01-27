@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="./Regist_Member_Page1.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymouxs"></script>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./Regist_Member_Page1.css">
+<head>
+  <meta charset="utf-8">
+  <title>FoodBook 회원가입</title>
+</head>
+<body>
+  <div class="topbanner">
+      <h1 class="toplogo"><a href="./MainHome.html"><span class="teambeer">TeamBeer</span><span class="foodbook">FoodBook</span></a></h1>
+      <h3> 통합회원가입 </h3>
+    </div>
+    <script>
+      const hypenTel = (target) => {
+           target.value = target.value
+             .replace(/[^0-9]/g, '')
+             .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+          }
+
+      function register_member() {
+          let id=$('#ID').val()
+          let password=$('#password').val()
+          let name=$('#name').val()
+          let birth=$('#birth').val()
+          let email=$('#email').val()
+          let pnumber=$('#p_number').val()
+          let postcode=$('#sample4_postcode').val()
+          let road_ad=$('#sample4_roadAddress').val()
+          let jibun_ad=$('#sample4_jibunAddress').val()
+          let detail_ad=$('#sample4_detailAddress').val()
+          let extra_ad=$('#sample4_extraAddress').val()
+
+          $.ajax({
+              type: 'POST',
+              url: '/re_mem',
+              data: {id_post: id, password_post:password, name_post:name, birth_post:birth, email_post:email, pnumber_post:pnumber, postcode_post:postcode, road_ad_post:road_ad, jibun_ad_post:jibun_ad, detail_ad_post:detail_ad, extra_ad_post:extra_ad},
+              success: function (response) {
+                  if(response['result']=='success')
+                  {
+                      alert('회원가입이 완료되었습니다.')
+                      window.location.href='/'
+                  }
+                  else
+                  {
+                      alert(response['msg'])
+                  }
+              }
+          });
+      }
+
+      function check_password() {
+          let f_pw = document.getElementById('password').value
+          let s_pw = document.getElementById('re_password').value
+
+          if (f_pw!=''&&s_pw!='')
+          {
+              if (f_pw == s_pw) {
+                  document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
+                  document.getElementById('check').style.color = 'blue';
+              } else {
+                  document.getElementById('check').innerHTML = '비밀번호가 일치하지않습니다.'
+                  document.getElementById('check').style.color = 'red';
+              }
+          }
+      }
+    </script>
+<div class="main">
+  <div class="Regist_box">
+    <div class="Regist_Info">
+            <div class="order">
+                <div class="order-info">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">아이디</span>
+                        <input id="ID" type="text" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">비밀번호</span>
+                        <input id="password" type="password" class="form-control" onchange="check_password()" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">비밀번호 확인</span>
+                        <input id="re_password" type="password" class="form-control" onchange="check_password()" required>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span id="check"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">이름</span>
+                        <input id="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">생일</span>
+                        <input id="birth" type="date" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">이메일</span>
+                        <input id="email" type="email" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">휴대폰 번호</span>
+                        <input id="p_number" type="text" oninput="hypenTel(this)" maxlength="13" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">우편번호</span>
+                    <input type="text" id="sample4_postcode" placeholder="우편번호" style="color:black" readonly required>
+                    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="postcode_find_button"><br>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">도로명주소</span>
+                    <input type="text" id="sample4_roadAddress" placeholder="도로명주소" style="color:black" readonly required>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">지번주소</span>
+                    <input type="text" id="sample4_jibunAddress" placeholder="지번주소" style="color:black" readonly required>
+                    <span id="guide" style="color:black;display:none"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">상세주소</span>
+                    <input type="text" id="sample4_detailAddress" placeholder="상세주소" style="color:black" required>
+                    </div>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">참고항목</span>
+                    <input type="text" id="sample4_extraAddress" placeholder="참고항목" style="color:black" require>
+                    </div>
+                    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                    <script>
+                        //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+                        function sample4_execDaumPostcode() {
+                            new daum.Postcode({
+                                oncomplete: function(data) {
+                                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                        extraRoadAddr += data.bname;
+                                    }
+                                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                                       extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                    }
+                                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                                    if(extraRoadAddr !== ''){
+                                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                                    }
+
+                                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                                    document.getElementById('sample4_postcode').value = data.zonecode;
+                                    document.getElementById("sample4_roadAddress").value = roadAddr;
+                                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                                    if(roadAddr !== ''){
+                                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                                    } else {
+                                        document.getElementById("sample4_extraAddress").value = '';
+                                    }
+
+                                    var guideTextBox = document.getElementById("guide");
+                                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                                    if(data.autoRoadAddress) {
+                                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                                        guideTextBox.style.display = 'block';
+
+                                    } else if(data.autoJibunAddress) {
+                                        var expJibunAddr = data.autoJibunAddress;
+                                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                                        guideTextBox.style.display = 'block';
+                                    } else {
+                                        guideTextBox.innerHTML = '';
+                                        guideTextBox.style.display = 'none';
+                                    }
+                                }
+                            }).open();
+                        }
+                    </script>
+                    <button onclick="register_member()" type="button" class="btn btn-warning mybtn" id="Regist_Button"><p>가입하기</p></button>
+                </div>
+          </div>
+    </div>
+  </div>
+</body>
+
+
+</html>

@@ -1,0 +1,94 @@
+body{
+  background-color:#FAFAFA;
+  margin: 8px;
+}
+a{
+  text-decoration: none;
+}
+.topbanner{
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  font-family: 'Black Han Sans', sans-serif;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.teambeer {color: #FFCD00;}
+.foodbook {color: #3CA0FF;}
+.main {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.foodbook_intro{
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  width: 500px;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.Regist_box {
+  padding: 20px;
+  margin: 0px auto;
+  width: 500px;
+  background-color:white;
+  border: 1px solid #3CA0FF;
+  border-radius: 3px;
+}
+.order{
+  margin:10px auto;
+  text-align: center;
+}
+.order-info{
+  display: block;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group mb-3{
+  text-align: center;
+}
+#sample4_postcode{
+  width: 40%;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+.postcode_find_button{
+  height: 37.6px;
+  margin: 0px 10px !important;
+  background-color: #FFCD00;
+  margin-bottom: 10px;
+  border-style: hidden;
+  border-radius: 5px !important;
+}
+.postcode_find_button:hover{
+  opacity: 0.5;
+}
+.mybtn{
+  margin-top: 20px;
+}
+#sample4_roadAddress{
+  width: 70%;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+#sample4_jibunAddress{
+  width: 75%;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+#sample4_detailAddress{
+  width: 75%;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+#sample4_extraAddress{
+  width: 75%;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+}
+#Regist_Button{
+  height: 40px;
+  width: 80%;
+}
