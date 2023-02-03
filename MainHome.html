@@ -7,27 +7,123 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <head>
     <meta charset="utf-8">
     <title>팀비어-푸드북</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script>
+    function mypage(){
+        $.ajax({
+            type:"GET",
+            url:"/isLogin",
+            data:{},
+            success: function (response){
+                if (response['result'] == 'success'){
+                    window.location.href='/mypage';
+                }
+                else{
+                    alert(response['msg']);
+                    window.location.href='/login';
+                }
+            }
+        })
+   }
+
+   function logout(cookie_name){
+       sessionStorage.clear();
+       $.removeCookie(cookie_name, { path: '/' });
+       window.location.href='/'
+   }
+
+   $(document).ready(function login_name(){
+        $.ajax({
+            type:"GET",
+            url:"/isLogin",
+            data:{},
+            success: function (response){
+                if (response['result'] == 'success'){
+                    if (response['isadmin']==0)
+                    {
+                        let name=response['name']
+                        $('#isLOGIN').text(`${name}님 안녕하세요!`)
+                        $('#log_bu').text('로그아웃')
+                        $('#log_bu').attr("href", "/")
+                        $('#ch_t').attr("onclick", "logout(token)")
+                        $('#ch_t').text('내 정보 수정')
+                        $('#ch_t').attr("href", "/mypage")
+                        $('#reg').text('쿠폰함')
+                        $('#reg').attr("href", "/")
+                    }
+                    else if(response['isadmin']==1)
+                    {
+                        let name=response['name']
+                        $('#isLOGIN').text(`${name}님 안녕하세요!`)
+                        $('#log_bu').text('로그아웃')
+                        $('#log_bu').attr("href", "/")
+                        $('#ch_t').attr("onclick", "logout(token)")
+                        $('#ch_t').text('내 정보 수정')
+                        $('#ch_t').attr("href", "/mypage")
+                        $('#reg').text('가게 정보 수정')
+                        $('#reg').attr("href", "/")
+                    }
+                }
+                else if(response['result'] == 'fail'){
+                    alert(response['msg'])
+                    $('#isLOGIN').text('로그인을 해주세요')
+                    $('#log_bu').text('로그인')
+                    $('#log_bu').attr("href", "/login")
+                    $('#log_bu').attr("onclick", "login()")
+                    $('#ch_t').text('아이디/비밀번호찾기')
+                    $('#ch_t').attr("href", "/")
+                    $('#reg').text('회원가입')
+                    $('#reg').attr("href", "/signup")
+
+                }
+                else if(response['result'] == 'Null'){
+                    $('#isLOGIN').text('로그인을 해주세요')
+                    $('#log_bu').text('로그인')
+                    $('#log_bu').attr("href", "/login")
+                    $('#log_bu').attr("onclick", "login()")
+                    $('#ch_t').text('아이디/비밀번호찾기')
+                    $('#ch_t').attr("href", "/")
+                    $('#reg').text('회원가입')
+                    $('#reg').attr("href", "/signup")
+
+                }
+            }
+        })
+   })
+
+</script>
 <body>
+
 <div class="LayoutFoodBook">
     <div class="Header_FoodBook">
       <div class="TopLogo">
-      <a href="./MainHome.html"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드북로고"></a>
+      <a href="/"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드북로고"></a>
       </div>
       <div class="TopMenu">
         <ul class="TopMenu_list">
-          <li><a href="#">공지사항</a></li>
-          <li><a href="#">마이페이지</a></li>
-          <li><a href="./FoodBook_Reservation.html">예약</a></li>
-          <li><a href="#">배달</a></li>
+          <li><a href="">공지사항</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">내 정보 확인</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                    <input type="password" name="" value="" placeholder="비밀번호 입력." style="border:none">
+                    <button type="button" name="" class="p_check_button">확인</button>
+                </li>
+              </ul>
+          </li>
+          <li><a href="/reg">예약</a></li>
+          <li><a href="/deli">배달</a></li>
         </ul>
       </div>
     </div>
-
 
   <div class="MainScript">
       <div class="MainSec">
@@ -36,7 +132,7 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide">
-                        <a href="./MainHome.html" target="_self"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드"></a>
+                        <a href="/" target="_self"><img src="https://i.postimg.cc/WD971qGz/image.png" alt="푸드"></a>
                       </div>
                       <div class="swiper-slide">
                           내용은 언제든지 수정가능하다<br>
@@ -50,13 +146,9 @@
                           <img src="" alt=""><br>
                           이렇게 이미지도 넣을 수 있습니다.
                       </div>
-
-
-
                     </div>
                       <!-- If we need pagination -->
                       <div class="swiper-pagination">ssss</div>
-
                       <!-- If we need navigation buttons -->
                       <div class="swiper-button-prev" id="swiper_button"></div>
                       <div class="swiper-button-next" id="swiper_button"></div>
@@ -64,18 +156,161 @@
 
                   </div>
             </div>
+            <div class="MainSec_L_C2">
+              <div class="Store_regist_container" style="width:400px">
+                    <ul class="Store_regist">
+                      <li>가게 이름 : <span class="kk01"><input type="text" class="account" id= "res_name" placeholder= "가게 이름" required></span>
+                      <li>우편 번호 : <span class="kk01"><input type="text" id="sample4_postcode" placeholder="우편번호" required readonly>
+                      <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="find_post_button"></span>
+                      <li>도로명 주소 : <span class="kk01"><input type="text" id="sample4_roadAddress" placeholder="도로명주소" required readonly></span>
+                      <li>지번 주소 : <span class="kk01"><input type="text" id="sample4_jibunAddress" placeholder="지번주소" required readonly></span>
+                      <li>상세 주소 :<span class="kk01"> <input type="text" id="sample4_detailAddress" placeholder="상세주소" required></span>
+                      <li>참고 항목 : <span class="kk01"><input type="text" id="sample4_extraAddress" placeholder="참고항목"  readonly></span>
+                      <li>전화 번호 : <span class="kk01"><input type="text" id="res_number" oninput="hypenTell(this)" maxlength="13" placeholder="가게 전화" required></span>
+                      <li>사업자 번호 : <span class="kk01"><input type="text" id="saupja" oninput='hypenTel(this)' maxlength="11" minlength="11" placeholder="사업자 번호" required></span>
+                      <li>영업 시간 : <span class="kk01">
+                                        <select id="start_h"><script>
+                							for (i = 0; i < 25; i++) {
+                							    var hour = i;
+                							    document.write('<option value=' + hour + '>' + hour + '</option>');
+                							}
+                                        </script></select> : <select id="start_m"> <script>
+                							for (i = 0; i < 61; i++) {
+                							    var min = i;
+                							    document.write('<option value=' + min + '>' + min + '</option>');
+                							}
+                                        </script></select> ~ <select id="close_h"> <script>
+                							for (i = 0; i < 25; i++) {
+                							    var hour = i;
+                							    document.write('<option value=' + hour + '>' + hour + '</option>');
+                							}
+                                        </script></select> : <select id="close_m"> <script>
+                							for (i = 0; i < 61; i++) {
+                							    var min = i;
+                							    document.write('<option value=' + min + '>' + min + '</option>');
+                							}
+                                        </script></select>
+                                    </span>
+                    </li>
+                      <li>업종 : <span class="kk01"><input type="text" id="wkinds" placeholder="참고항목" required></span></li>
+                      <span style="margin-top:10px"><input type="button" onclick="reg_res()" value="등록하기" id="res_regist_button"></span>
+
+                  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                </ul>
+              </div>
+            </div>
           </div>
               <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+              <script>
+                  const hypenTel = (target) => {
+                       target.value = target.value
+                         .replace(/[^0-8]/g, '')
+                         .replace(/^(\d{3})(\d{2})(\d{4})$/, `$1-$2-$3`);
+                      }
+                  const hypenTell = (target) => {
+                       target.value = target.value
+                         .replace(/[^0-9]/g, '')
+                         .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                      }
+                  function reg_res() {
+                      let res_name=$('#res_name').val()
+                      let start_h=$('#start_h').val()
+                      let start_m=$('#start_m').val()
+                      let close_h=$('#close_h').val()
+                      let close_m=$('#close_m').val()
+                      let saupja=$('#saupja').val()
+                      let wkinds=$('#wkinds').val()
+                      let res_number=$('#res_number').val()
+                      let postcode=$('#sample4_postcode').val()
+                      let road_ad=$('#sample4_roadAddress').val()
+                      let jibun_ad=$('#sample4_jibunAddress').val()
+                      let detail_ad=$('#sample4_detailAddress').val()
+                      let extra_ad=$('#sample4_extraAddress').val()
+
+                      $.ajax({
+                          type: 'POST',
+                          url: '/sign_res',
+                          data: {res_name: res_name, start_h:start_h, start_m:start_m, close_h:close_h, close_m:close_m, wkinds:wkinds,saupja:saupja,res_number:res_number, postcode_post:postcode, road_ad_post:road_ad, jibun_ad_post:jibun_ad, detail_ad_post:detail_ad, extra_ad_post:extra_ad},
+                          success: function (response) {
+                              if(response['result']=='success')
+                              {
+                                  alert('가게 등록이 완료되었습니다.')
+                                  window.location.href='/'
+                              }
+                              else
+                              {
+                                  alert(response['msg'])
+                              }
+                          }
+                      });
+                  }
+
+
+                  function sample4_execDaumPostcode() {
+                      new daum.Postcode({
+                          oncomplete: function(data) {
+                              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                              // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                              var roadAddr = data.roadAddress; // 도로명 주소 변수
+                              var extraRoadAddr = ''; // 참고 항목 변수
+
+                              // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                              // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                              if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                  extraRoadAddr += data.bname;
+                              }
+                              // 건물명이 있고, 공동주택일 경우 추가한다.
+                              if(data.buildingName !== '' && data.apartment === 'Y'){
+                                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                              }
+                              // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                              if(extraRoadAddr !== ''){
+                                  extraRoadAddr = ' (' + extraRoadAddr + ')';
+                              }
+
+                              // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                              document.getElementById('sample4_postcode').value = data.zonecode;
+                              document.getElementById("sample4_roadAddress").value = roadAddr;
+                              document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                              // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                              if(roadAddr !== ''){
+                                  document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                              } else {
+                                  document.getElementById("sample4_extraAddress").value = '';
+                              }
+
+                              var guideTextBox = document.getElementById("guide");
+                              // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                              if(data.autoRoadAddress) {
+                                  var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                                  guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                                  guideTextBox.style.display = 'block';
+
+                              } else if(data.autoJibunAddress) {
+                                  var expJibunAddr = data.autoJibunAddress;
+                                  guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                                  guideTextBox.style.display = 'block';
+                              } else {
+                                  guideTextBox.innerHTML = '';
+                                  guideTextBox.style.display = 'none';
+                              }
+                          }
+                      }).open();
+                  }
+              </script>
 
 
           <div class="MainSec_R">
             <div class="MainSec_R_C1">
               <div class="MainSec_RoginSec">
-                <p class="m_p">로그인을 해주세요</p>
-                <a target="_self" href="./Home.html" class="LoginButton">FoodBook 로그인</a>
+                <p class="m_p" id="isLOGIN">로그인을 해주세요</p>
+                <a target="_self" href="/login" class="LoginButton" id="log_bu">FoodBook 로그인</a>
                 <div class="RegistSec">
-                  <a href="/">아이디.비밀번호찾기</a>
-                  <a href="./Regist_Member_Page1.html">회원가입</a>
+                  <a href="/" id="ch_t">아이디.비밀번호찾기</a>
+                  <a href="/signup" id="reg">회원가입</a>
                 </div>
               </div>
             </div>
@@ -84,46 +319,104 @@
     </div>
   </div>
 </div>
-<footer class="End_Sec">
-  <div class="End_2Kim">
-    김동규: 010 5171 8182<br>
-    김재현: 010 7652 2811<br>
-    Copyright © TeamBeer All Rights Reserved.
-  </div>
-</footer>
-</body>
+        <footer class="End_Sec">
+          <div class="End_2Kim">
+            김동규: 010 5171 8182<br>
+            김재현: 010 7652 2811<br>
+            Copyright © TeamBeer All Rights Reserved.
+          </div>
+        </footer>
+        <!-- 스와이프 js문 -->
+        <script>
+        var mySwiper = new Swiper('.swiper-container', {
+               loop:true,
+               loopAdditionalSlides: 1,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                  el: '.swiper-pagination',
+                  type: 'bullets',
+                },
+                autoplay: {
+                  delay: 3000,
+                },
+                });
+        </script>
+
+        <!-- 메뉴 이름|메뉴 가격|메뉴 사진
+      <div class='addInput'>
+
+      </div>
+      <button type='button' class="btnAdd">메뉴 추가하기</button>
+      <button type='button' onclick="menu_go()">등록하기</button>
 
 
-   <!-- js문 -->
-   <script>
-   var mySwiper = new Swiper('.swiper-container', {
-          loop:true,
-          loopAdditionalSlides: 1,
-           // 슬라이드를 버튼으로 움직일 수 있습니다.
-           navigation: {
-             nextEl: '.swiper-button-next',
-             prevEl: '.swiper-button-prev',
-           },
-           // 현재 페이지를 나타내는 점이 생깁니다. 클릭하면 이동합니다.
-           pagination: {
-             el: '.swiper-pagination',
-             type: 'bullets',
-           },
-           // 현재 페이지를 나타내는 스크롤이 생깁니다. 클릭하면 이동합니다.
-           // scrollbar: {
-           //   el: '.swiper-scrollbar',
-           //   draggable: true,
-           // },
-           // 3초마다 자동으로 슬라이드가 넘어갑니다. 1초 = 1000
-           autoplay: {
-             delay: 3000,
-           },
-           });
-           // 슬라이드 무한루프
-           // var swiper = new Swiper('.swiper-container', {
-           //   slidesPerView: 1, // 보여지는 슬라이드 수
-           //   spaceBetween: 50, // 슬라이드 간의 거리(px 단위)
-           //   loop: true, // 슬라이드 무한 반복
-           // });
-   </script>
+      <script type="text/javascript">
+      let i=1;
+      let j=1;
+      let k=1;
+          $(document).ready (function () {
+              $('.btnAdd').click (function () {
+                  $('.addInput').append (
+                      '<input type="menu_name" name="test" value="">\<input type="number" name="menu_value" value="" >\<input type="file" name="menu_image" accept="image/*" onchange="loadFile(this)">\
+                      <button type="button" class="btnRemove">메뉴 삭제하기</button><br>'
+                  );    // input taf 추가
+                  $('.btnRemove').on('click', function () {
+                      $(this).prev().remove();
+                      $(this).prev().remove();                                                          // 여기서 this는 '.btnRemove'
+                      $(this).prev().remove();        // .prev()로 input tag를 가리키고 remove()한다.
+                      $(this).next().remove();        // <br> 삭제
+                      $(this).remove();                        // 버튼삭제
+                  });
+              });
+          });
+      function loadFile(input) {
+          var file = input.files[0];	//선택된 파일 가져오기
+
+          //미리 만들어 놓은 div에 text(파일 이름) 추가
+          var name = document.getElementById('fileName');
+          name.textContent = file.name;
+
+          //새로운 이미지 div 추가
+          var newImage = document.createElement("img");
+          newImage.setAttribute("class", 'img');
+
+          //이미지 source 가져오기
+          newImage.src = URL.createObjectURL(file);
+
+          newImage.style.width = "70%";
+          newImage.style.height = "70%";
+          newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지를 숨긴다
+          newImage.style.objectFit = "contain";
+
+          //이미지를 image-show div에 추가
+          var container = document.getElementById('image-show');
+          container.appendChild(newImage);
+  };
+      function menu_go(){
+           String[] namearray=request.getParameterValues("menu_name");
+           String[] valuearray=request.getParameterValues("menu_value");
+           String[] imagearray=request.getParameterValues("menu_image");
+           $.ajax({
+              type:"GET",
+              url:"/reg_menu_info",
+              data:{
+                  name_ar:namearray,
+                  value_ar:valuearray,
+                  image_ar:imagearray
+              },
+              success: function (response){
+                  if (response['result'] == 'success'){
+                      alert(response['msg'])
+                  }
+                  else{
+
+                  }
+              }
+           })
+      }
+      </script> -->
+    </body>
 </html>

@@ -9,10 +9,13 @@ html:root{
 }
 body{
   min-width: 320px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Do Hyeon', sans-serif !important;
 }
 a{
-    text-decoration: none;
+    text-decoration: none !important;
+}
+li{
+  list-style: none;
 }
 .LayoutFoodBook{
   flex-direction: column;
@@ -45,11 +48,14 @@ img{
   align-items: center;
   list-style: none;
   display: flex;
+  padding-left: 0px !important;
 }
-.TopMenu_list li{
+.TopMenu_list>li{
   color:#464646;
   position: relative;
   display:list-item;
+  background: rgb(243, 245, 247);
+  border-radius: 15px;
 }
 .TopMenu_list li a {
   text-decoration: none;
@@ -71,6 +77,26 @@ img{
 .MainSec_L{
   display: block;
 }
+.dropdown-toggle::after{
+    content:none !important;
+}
+.dropdown-item{
+  padding:0px !important;
+}
+.dropdown-item:hover{
+  background-color: white !important;
+}
+.dropdown-menu{
+  padding-left: 20px  !important;
+  padding-right: 20px  !important;
+}
+.p_check_button{
+    background-color: rgb(26, 124, 255);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px;
+}
 .swiper-container {
     margin-left: auto;
     margin-right: auto;
@@ -91,8 +117,46 @@ img{
 #swiper_button:hover{
   opacity: 1;
 }
+.MainSec_L_C2{
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  background-color: rgb(243, 245, 247);
+
+}
+.Store_regist_container{
+  margin: 0 auto;
+}
+.Store_regist li{
+  margin: 10px 0px;
+}
+input::placeholder {
+    text-align: center;
+}
+.kk01{
+  float: right;
+}
 .MainSec_R{
   display: block;
+}
+#sample4_roadAddress,#res_name,#sample4_roadAddress,#sample4_jibunAddress,#sample4_extraAddress,#sample4_detailAddress,#res_number,#saupja,#wkinds{
+  width: 246px;
+}
+#find_post_button{
+  background-color: #3CA0FF;
+  border-radius: 4px;
+  border-color: transparent;
+  color: white;
+}
+#res_regist_button{
+  background-color: #3CA0FF;
+  border-radius: 4px;
+  border-color: transparent;
+  color: white;
+  width: 250px;
+  display: block;
+  margin: auto;
 }
 
 .MainSec_RoginSec{
